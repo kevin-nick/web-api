@@ -9,7 +9,7 @@ EXPOSE 80
 ENV ASPNETCORE_URLS=http://+:8080
 
 #ETAPA DE CONSTRUCCION
-FROM mcr.microsoft.com/dotnet/sdk:10.0.301 as build 
+FROM mcr.microsoft.com/dotnet/sdk:10.0 as build 
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 
@@ -29,7 +29,7 @@ RUN dotnet build "MasterNet.WebApi.csproj" -c $BUILD_CONFIGURATION -o /app/build
 #ETAPA DE PUBLICACION
 FROM build as publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish  "MasterNet.WebApi.csproj" -c  $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "MasterNet.WebApi.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base as final
 WORKDIR /app
