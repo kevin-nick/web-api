@@ -1,5 +1,5 @@
 #ETAPA DE CONFIGURACION
-FROM mcr.microsoft.com/dotnet/aspnet:10.0 as base
+FROM mcr.microsoft.com/dotnet/aspnet:10.0.x as base
 WORKDIR /app
 
 EXPOSE 8080
@@ -9,7 +9,7 @@ EXPOSE 80
 ENV ASPNETCORE_URLS=http://+:8080
 
 #ETAPA DE CONSTRUCCION
-FROM mcr.microsoft.com/dotnet/sdk:10.0 as build 
+FROM mcr.microsoft.com/dotnet/sdk:10.0.x as build 
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 
